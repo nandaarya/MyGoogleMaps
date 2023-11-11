@@ -112,6 +112,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             ) == PackageManager.PERMISSION_GRANTED
         ) {
             mMap.isMyLocationEnabled = true
+            // Mengatur pemantauan perubahan lokasi pengguna
+            mMap.setOnMyLocationChangeListener { location ->
+                currentLocation = LatLng(location.latitude, location.longitude)
+                // Sekarang, Anda memiliki latitude dan longitude lokasi pengguna dalam currentLocation.
+                // Anda dapat menyimpan atau menggunakan data ini sesuai kebutuhan.
+            }
         } else {
             requestPermissionLauncher.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
         }
